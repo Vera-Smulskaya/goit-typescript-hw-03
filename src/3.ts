@@ -8,6 +8,18 @@
 */
 
 // реалізація класу Wizard
+
+interface ICharacter {
+  name: string;
+  level: number;
+  introduce(phrase: string): void;
+  levelUp(): void;
+}
+
+interface ISpellCaster {
+  castSpell(): void;
+}
+
 class Wizard implements ICharacter, ISpellCaster {
   constructor(public name: string, public level: number) {
     if (this.level < 1) {
@@ -30,7 +42,7 @@ class Wizard implements ICharacter, ISpellCaster {
 }
 
 // тестування класу
-const wizard = new Wizard('Merlin', 15);
+const wizard: ICharacter & ISpellCaster = new Wizard('Merlin', 15);
 
 wizard.introduce('I am the mighty wizard');
 wizard.castSpell();
